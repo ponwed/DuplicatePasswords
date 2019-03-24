@@ -11,11 +11,14 @@ namespace DuplicatePasswords
             List<string> fileContent = new List<string>(File.ReadAllLines(args[0]));
             PasswordParser parser = new PasswordParser(fileContent);
 
-            List<PasswordEntry> parsedFile = parser.ParseFile();
-
-            foreach (var entry in parsedFile)
+            var duplicates = parser.FindDuplicates();
+            
+            foreach (var key in duplicates)
             {
-                Console.WriteLine(entry.username + "\t" + entry.password);
+                foreach (var item in key)
+                {
+                    Console.WriteLine(item.name + "," + item.password);
+                }
             }
         }
     }

@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DuplicatePasswords
 {
     public class PasswordParser
     {
         private List<string> content;
+        private List<PasswordEntry> parsedContent;
 
 
         public PasswordParser(List<string> _content)
@@ -12,10 +14,10 @@ namespace DuplicatePasswords
             content = _content;
         }
 
-        public List<PasswordEntry> ParseFile()
+        private void ParseFile()
         {
             string[] splitString;
-            List<PasswordEntry> parsedContent = new List<PasswordEntry>();
+            parsedContent = new List<PasswordEntry>();
 
             foreach (string line in content)
             {
@@ -23,8 +25,13 @@ namespace DuplicatePasswords
                 PasswordEntry passwordEntry = new PasswordEntry(splitString[0], splitString[1], splitString[2], splitString[3]);
                 parsedContent.Add(passwordEntry);
             }
+        }
 
-            return parsedContent;
+        public List<IGrouping<string, PasswordEntry>> FindDuplicates()
+        {
+            ParseFile();
+            var query = parsedContent.GroupBy(x => x.password).Where(g => g.Count() > 1).ToList();
+            return query;
         }
     }
 }
