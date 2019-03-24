@@ -1,4 +1,7 @@
 name,url,username,password
 site.com,https://www.site.com/passwordFormPage,admin,hunter2
-site1.com,https://www.site1.com/passwordFormPage,admin,hunter3
-site2.com,https://www.site2.com/passwordFormPage,admin,hunter4
+site1.com,https://www.site1.com/passwordFormPage,admin,hunter2
+site2.com,https://www.site2.com/passwordFormPage,admin,hunter3
+site3.com,https://www.site3.com/passwordFormPage,admin,hunter4
+site4.com,https://www.site4.com/passwordFormPage,admin,hunter3
+site5.com,https://www.site4.com/passwordFormPage,admin,hunter3
